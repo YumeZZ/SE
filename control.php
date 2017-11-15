@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once('model.php');
+require_once('loginModel.php');
+
 $action =$_REQUEST['act'];
 
 switch ($action) {
@@ -29,13 +31,20 @@ case 'like':
         likeBook($id);
     }
     break;
-}
 
 case 'insertCmt':
     $bkID=(int)$_REQUEST['bkID'];
     $msg=$_REQUEST['msg'];
     insertComment($bkID, $msg, $_SESSION['uID']);
     break;
+
+case 'deleteComment':
+    $id = (int) $_REQUEST['id'];
+    if ($id > 0 and isAdmin($_SESSION['uID'])) {
+        deleteComment($id);
+    }
+    break;
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

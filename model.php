@@ -37,9 +37,9 @@ function insertBook($title='', $msg='', $author='', $uID) {
     } else return false;
 }
 
-function getMsg($id) {
+function getBookDetail($id) {
     global $conn;
-    if($id >0 ) {
+    if($id > 0) {
         $sql = "select book.*, user.name from book, user where book.uID=user.id and book.id=$id;";
         $result=mysqli_query($conn,$sql) or die("DB Error: Cannot retrieve message."); //執行SQL查詢
     } else {
@@ -72,16 +72,18 @@ function likeBook($id) {
     return mysqli_query($conn, $sql); //執行SQL
 }
 
-function addComment($bookID, $uID, $msg) {
-    global $conn;
+// function addComment($bookID, $uID, $msg) {
+//     global $conn;
 
+// }
+
+function getComment($bkID) {
+    global $conn;
+    $sql = "select comment.*, user.name as userName from comment, user where comment.uID=user.id and comment.bkID=$bkID";
+    return mysqli_query($conn, $sql);
 }
 
-function getComments($bookID) {
-    global $conn;
-}
-
-function insertComment($bkID='', $msg='', $uID) {
+function insertComment($bkID, $msg, $uID) {
     global $conn;
 
     if ($msg > ' ') {
@@ -91,8 +93,19 @@ function insertComment($bkID='', $msg='', $uID) {
         $uID = (int)$uID;
         
         //Generate SQL
-        $sql = "insert into comment (bkID, msg, author, uID) values ('$bkID', '$msg', $uID);";
+        $sql = "insert into comment (bkID, msg, uID) values ('$bkID', '$msg', $uID);";
+
         return mysqli_query($conn, $sql); //執行SQL
     } else return false;
+}
+function deleteComment($id) {
+	global $conn;
+
+	//對$id 做基本檢誤
+	$id = (int) $id;
+	
+	//產生SQL
+	$sql = "delete from comment where id=$id;";
+	return mysqli_query($conn, $sql); //執行SQL
 }
 ?>
