@@ -80,4 +80,19 @@ function addComment($bookID, $uID, $msg) {
 function getComments($bookID) {
     global $conn;
 }
+
+function insertComment($bkID='', $msg='', $uID) {
+    global $conn;
+
+    if ($msg > ' ') {
+        //基本安全處理
+        $bkID = (int)$bkID;
+        $msg = mysqli_real_escape_string($conn, $msg);
+        $uID = (int)$uID;
+        
+        //Generate SQL
+        $sql = "insert into comment (bkID, msg, author, uID) values ('$bkID', '$msg', $uID);";
+        return mysqli_query($conn, $sql); //執行SQL
+    } else return false;
+}
 ?>
