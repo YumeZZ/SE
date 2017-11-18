@@ -47,6 +47,7 @@
         }
         return false;
     }
+    
     function getUserName($id) {
         global $conn;
         $id = (int) $id;
