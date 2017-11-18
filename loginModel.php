@@ -39,12 +39,29 @@
         $sql = "SELECT role FROM user WHERE id = $uID"; 
         //執行SQL查詢
         if ($result = mysqli_query($conn,$sql)) { 
-            if ($row=mysqli_fetch_assoc($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
                 if ($row['role'] == 999) {
                     return true;
                 }
             }
         }
+        return false;
+    }
+    function getUserName($id) {
+        global $conn;
+        $id = (int) $id;
+        $sql = "SELECT name FROM user WHERE id = $id";
+        //執行SQL查詢
+        if ($result = mysqli_query($conn,$sql)) {
+            //取得第一筆資料
+            if ($row = mysqli_fetch_assoc($result)) {
+                return $row['name'];
+            } else {
+                //查不到資料
+                return false;
+            }
+        }
+        //查詢失敗
         return false;
     }
 

@@ -29,13 +29,13 @@ $id=(int)$_REQUEST['id'];
   </tr>
 <?php
 require_once("model.php");
-$results=getComments($id);
+$results = getComment($id);
 
-while (	$rs=mysqli_fetch_array($results)) {
+while ($rs = mysqli_fetch_array($results)) {
 
-	echo "<tr><td>" , $rs['cid'] ,
-	"<td>", $rs['userName'],
-	"<td>(", $rs['msg'], ")</td></td></tr>";
+    echo "<tr><td>" , $rs['cid'] ,
+    "<td>", $rs['userName'],
+    "<td>(", $rs['msg'], ")</td></td></tr>";
 }
 ?>
 

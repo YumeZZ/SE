@@ -4,7 +4,7 @@ require("dbconnect.php");
 function getBookList() {
     global $conn;
     //$sql = "select * from guestbook;";
-    $sql = "select book.*, user.name from book, user where book.uID=user.id";
+    $sql = "select book.*, user.name from book, user where book.uID = user.id";
 
     return mysqli_query($conn, $sql);
 }
@@ -19,7 +19,6 @@ function deleteBook($id) {
     $sql = "delete from book where id=$id;";
     return mysqli_query($conn, $sql); //執行SQL
 }
-
 
 function insertBook($title='', $msg='', $author='', $uID) {
     global $conn;
@@ -63,12 +62,21 @@ function updateMsg($id, $title, $msg, $author) {
 
 function likeBook($id) {
     global $conn;
-
     //對$id 做基本檢誤
     $id = (int) $id;
     
     //產生SQL
-    $sql = "update book set push = push+1 where id=$id;";
+    $sql = "update book set push = push+1 where id = $id;";
+    return mysqli_query($conn, $sql); //執行SQL
+}
+
+function dislikeBook($id) {
+    global $conn;
+    //對$id 做基本檢誤
+    $id = (int) $id;
+    
+    //產生SQL
+    $sql = "update book set pull = pull + 1 where id = $id;";
     return mysqli_query($conn, $sql); //執行SQL
 }
 
@@ -79,7 +87,7 @@ function likeBook($id) {
 
 function getComment($bkID) {
     global $conn;
-    $sql = "select comment.*, user.name as userName from comment, user where comment.uID=user.id and comment.bkID=$bkID";
+    $sql = "select comment.*, user.name as userName from comment, user where comment.uID=user.id and comment.bkID = $bkID";
     return mysqli_query($conn, $sql);
 }
 
