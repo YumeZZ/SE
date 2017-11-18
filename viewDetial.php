@@ -45,16 +45,23 @@ if ( $rs=mysqli_fetch_array($results)) {
 }
 echo "<hr>";
 $results=getComment($bkID);
+// <table>
+//     <tr>
+//         <td>comment</td>
+//         <td>id</td>
+//     </tr>
 while ( $rs=mysqli_fetch_array($results)) {
     if (isAdmin($_SESSION['uID'])) {
         echo "<a href ='control.php?act=deleteComment&id=",$rs['id'],"'>deltet</a>";
     }
-    echo $rs['msg'], $rs['userName'], "<br>";
+    echo "<tr><td>",$rs['msg'], $rs['userName'], "</td></tr><br>";
 }
 ?>
 <hr>
 <form method="post" action="control.php">
-    <label>
+    <label><tr>
+    <td>id</td>
+    <td>title</td>
       <input type="submit" name="Submit" value="新增" />
       <input name="bkID" type="hidden" value='<?php echo $bkID;?>' />
       <input name="act" type="hidden" value='insertCmt' />
