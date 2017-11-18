@@ -36,7 +36,5 @@
         作者 : <input name="author" type="text" id="author" value="<?php echo $author;?>" /> <br>
         <input type="submit" name="Submit" value="送出" />
     </form>
-  </tr>
-</table>
 </body>
 </html>
