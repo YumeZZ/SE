@@ -18,6 +18,7 @@
 
   <body>
     <p>推薦書單所有留言&nbsp;&nbsp;[<a href='loginForm.php'>登出</a>]</p>
+    <a href="view.php">[回推薦列表]</a>
     <hr />
     <table width=60% border="1">
       <tr>
@@ -46,7 +47,7 @@
             "</td><td>", $rs['author'],
             "</td><td>", $rs['name'],
             "</td><td>(", $rs['push'],
-            "</td><td>(", $rs['pull'], ")</td></td></tr>";
+            ")</td><td>(", $rs['pull'], ")</td></td></tr>";
           }
 
           
@@ -74,7 +75,7 @@
         </label>
         <label>
           <?php
-              echo "當前使用者: ", getUserName($_SESSION['uID']), "<br/>";
+              echo "使用者: ", getUserName($_SESSION['uID']), "<br/>";
           ?>
           留言：
           <input name="msg" type="text" id="msg" />

@@ -21,6 +21,7 @@
 
   <body>
     <p>所有推薦書單&nbsp;&nbsp;[<a href='loginForm.php'>登出</a>]</p>
+    
     <hr />
     <table width=60% border="1">
       <tr>
@@ -44,14 +45,14 @@
           "<a href='editMessageForm.php?id=",$rs['id'] ,"'>改</a> | ",
           "<a href='control.php?act=like&id=",$rs['id'] ,"'>讚</a> | ",
           "<a href='control.php?act=dislike&id=",$rs['id'] ,"'>噓</a> | ",
-          "<a href='viewDetial.php?id=",$rs['id'] ,"'>Cmt</a> | ",
+          "<a href='viewDetail.php?id=",$rs['id'] ,"'>Cmt</a> | ",
           // "</td><td><a href='showBook.php?id=" ,$rs['id'],  "'>" , $rs['title'],"</a>",
           "</td><td>" , $rs['title'],
           "</td><td>" , $rs['msg'],
           "</td><td>", $rs['author'],
           "</td><td>", $rs['name'],
           "</td><td>(", $rs['push'],
-          "</td><td>(", $rs['pull'], ")</td></td></tr>";
+          ")</td><td>(", $rs['pull'], ")</td></td></tr>";
         }
       ?>
 
