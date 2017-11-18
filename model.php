@@ -47,7 +47,7 @@ function getBookDetail($id) {
     return $result;
 }
 
-function updateMsg($id, $title, $msg, $author) {
+function updateBook($id, $title, $msg, $author) {
     global $conn;
     $title=mysqli_real_escape_string($conn,$title);
     $msg=mysqli_real_escape_string($conn,$msg);
