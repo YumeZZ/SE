@@ -48,9 +48,10 @@
             "</td><td>(", $rs['push'],
             "</td><td>(", $rs['pull'], ")</td></td></tr>";
           }
-          echo "</table><hr><table width='40%' border='1'><tr><td>作者</td><td>回應</td></tr>";
 
-
+          
+          echo "</table><hr>";
+          echo "所有回應：<table width='40%' border='1'><tr><td>作者</td><td>回應</td></tr>";
           $results = getComment($bkID);
 
           while ( $rs = mysqli_fetch_array($results)) {
