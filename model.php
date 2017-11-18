@@ -25,22 +25,25 @@ function insertBook($title='', $msg='', $author='', $uID) {
 
     if ($title > ' ') {
         //基本安全處理
-        $title=mysqli_real_escape_string($conn, $title);
-        $msg=mysqli_real_escape_string($conn, $msg);
-        $author=mysqli_real_escape_string($conn, $author);
-        $uID=(int)$uID;
+        $title = mysqli_real_escape_string($conn, $title);
+        $msg = mysqli_real_escape_string($conn, $msg);
+        $author = mysqli_real_escape_string($conn, $author);
+        $uID = (int)$uID;
         
         //Generate SQL
         $sql = "insert into book (title, msg, author, uID) values ('$title', '$msg','$author', $uID);";
         return mysqli_query($conn, $sql); //執行SQL
-    } else return false;
+    } else {
+        return false;
+    }
+    
 }
 
 function getBookDetail($id) {
     global $conn;
     if($id > 0) {
         $sql = "select book.*, user.name from book, user where book.uID=user.id and book.id=$id;";
-        $result=mysqli_query($conn,$sql) or die("DB Error: Cannot retrieve message."); //執行SQL查詢
+        $result = mysqli_query($conn,$sql) or die("DB Error: Cannot retrieve message."); //執行SQL查詢
     } else {
         $result = false;
     }
@@ -106,14 +109,15 @@ function insertComment($bkID, $msg, $uID) {
         return mysqli_query($conn, $sql); //執行SQL
     } else return false;
 }
-function deleteComment($id) {
-	global $conn;
 
-	//對$id 做基本檢誤
-	$id = (int) $id;
-	
-	//產生SQL
-	$sql = "delete from comment where id=$id;";
-	return mysqli_query($conn, $sql); //執行SQL
+function deleteComment($id) {
+    global $conn;
+
+    //對$id 做基本檢誤
+    $id = (int) $id;
+
+    //產生SQL
+    $sql = "delete from comment where id=$id;";
+    return mysqli_query($conn, $sql); //執行SQL
 }
 ?>

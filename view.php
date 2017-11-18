@@ -55,41 +55,41 @@
         }
       ?>
 
-    <tr>
-      <!-- 以表單的方式將新增資料送至control.php -->
-      <form method="post" action="control.php">
-      <td colspan="2">
-        <label>
-          <input type="submit" name="Submit" value="新增" />
-          <input name="act" type="hidden" value='insert' />
-        </label>
-      </td>
-      <td>
-        <label>
-          <input name="title" type="text" id="title" />
-        </label>
-      </td>
-      <td>
-        <label>
-          <input name="msg" type="text" id="msg" />
-       </label>
-      </td>
-      <td>
-        <label>
-          <input name="author" type="text" id="author" />
-        </label>
-      </td>
-      <td colspan="3">
-        <label>
-          <?php
-              echo "使用者: ", getUserName($_SESSION['uID']);
-          ?>
-          <!-- 將使用者的uID以隱藏的input元素藏在Form裡面送出 -->
-          <input name="myname" type="hidden" id="myname" value='<?php echo $_SESSION['uID']; ?>' />
-        </label>
-      </td>
-      </form>
-    </tr>
-</table>
-</body>
+      <tr>
+        <!-- 以表單的方式將新增資料送至control.php -->
+        <form method="post" action="control.php">
+        <td colspan="2">
+          <label>
+            <input type="submit" name="Submit" value="新增" />
+            <input name="act" type="hidden" value='insert' />
+          </label>
+        </td>
+        <td>
+          <label>
+            <input name="title" type="text" id="title" />
+          </label>
+        </td>
+        <td>
+          <label>
+            <input name="msg" type="text" id="msg" />
+         </label>
+        </td>
+        <td>
+          <label>
+            <input name="author" type="text" id="author" />
+          </label>
+        </td>
+        <td colspan="3">
+          <label>
+            <?php
+                echo "使用者: ", getUserName($_SESSION['uID']);
+            ?>
+            <!-- 將使用者的uID以隱藏的input元素藏在Form裡面送出 -->
+            <input name="myname" type="hidden" id="myname" value='<?php echo $_SESSION['uID']; ?>' />
+          </label>
+        </td>
+        </form>
+      </tr>
+    </table>
+  </body>
 </html>
