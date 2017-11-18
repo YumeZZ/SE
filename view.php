@@ -41,11 +41,11 @@
         //將回傳內容逐列顯示
         while ($rs = mysqli_fetch_array($results)) {
           echo "<tr><td>" , $rs['id'] ,"</td><td>",
-          "<a href='control.php?act=delete&id=",$rs['id'] ,"'>砍</a> | ",
+          "<a href='control.php?act=delete&id=",$rs['id'],"&uid=", $rs['uID'] ,"'>砍</a> | ",
           "<a href='editMessageForm.php?id=",$rs['id'] ,"'>改</a> | ",
           "<a href='control.php?act=like&id=",$rs['id'] ,"'>讚</a> | ",
           "<a href='control.php?act=dislike&id=",$rs['id'] ,"'>噓</a> | ",
-          "<a href='viewDetail.php?id=",$rs['id'] ,"'>Cmt</a> | ",
+          "<a href='viewDetail.php?bid=",$rs['id'] ,"'>Cmt</a> | ",
           // "</td><td><a href='showBook.php?id=" ,$rs['id'],  "'>" , $rs['title'],"</a>",
           "</td><td>" , $rs['title'],
           "</td><td>" , $rs['msg'],

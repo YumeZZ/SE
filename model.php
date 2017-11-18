@@ -9,15 +9,22 @@ function getBookList() {
     return mysqli_query($conn, $sql);
 }
 
-function deleteBook($id) {
+function deleteBook($id, $uid) {
     global $conn;
 
     //對$id 做基本檢誤
     $id = (int) $id;
+    if(($_SESSION['uID']) == $uid) {
+        //產生SQL
+        $sql = "delete from book where id=$id;";
+        return mysqli_query($conn, $sql); //執行SQL
+    } else {
+        echo "<a href='view.php'>[回推薦列表]</a><br/>";
+        echo "You can't do that";
+        exit(0);
+    }
     
-    //產生SQL
-    $sql = "delete from book where id=$id;";
-    return mysqli_query($conn, $sql); //執行SQL
+    
 }
 
 function insertBook($title='', $msg='', $author='', $uID) {

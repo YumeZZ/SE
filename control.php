@@ -10,9 +10,10 @@ switch ($action) {
 
 //刪除書單
 case 'delete':
-$id = (int) $_REQUEST['id'];
+    $id = (int) $_REQUEST['id'];
+    $uid = (int) $_REQUEST['uid'];
     if ($id > 0) {
-        deleteBook($id);
+        deleteBook($id, $uid);
     }
     break;
 
@@ -68,7 +69,7 @@ case 'deleteComment':
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>成功(嘿嘿其實我不會出現)</title>
+        <title>(嘿嘿其實我不會出現)</title>
     </head>
     <body>
         <?php
