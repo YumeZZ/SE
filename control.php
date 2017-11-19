@@ -8,7 +8,7 @@ $action =$_REQUEST['act'];
 
 switch ($action) {
 
-//刪除書單
+//刪除書單 只有自己可以刪
 case 'delete':
     $id = (int) $_REQUEST['id'];
     $uid = (int) $_REQUEST['uid'];
@@ -28,7 +28,7 @@ case 'insert':
     // insertBook($title, $msg, $author, $_SESSION['uID']);
     break;
 
-//
+// 修改書單內容
 case 'update':
     $id = (int) $_REQUEST['id'];
     $title=$_REQUEST['title'];
