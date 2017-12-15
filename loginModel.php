@@ -1,6 +1,4 @@
 <?php
-    //啟用session 變數功能
-    session_start(); 
     require("dbconnect.php"); //匯入連結資料庫之共用程式碼
 
     //檢查帳密
@@ -34,20 +32,23 @@
     //檢查該使用者是否為管理員
     function isAdmin($uID){
         global $conn;
-        // $uid=(int)$uID;
+        $uID=(int)$uID;
         //產生SQL指令 從user資料表中查出該ID的管理員狀態
         $sql = "SELECT role FROM user WHERE id = $uID"; 
         //執行SQL查詢
         if ($result = mysqli_query($conn,$sql)) { 
             if ($row = mysqli_fetch_assoc($result)) {
-                if ($row['role'] == 999) {
+                if ($row['role'] == 1) {
                     return true;
+                } else {
+                    //不是管理員
+                    return false;
                 }
             }
         }
         return false;
     }
-    
+
     function getUserName($id) {
         global $conn;
         $id = (int) $id;
@@ -60,6 +61,48 @@
             } else {
                 //查不到資料
                 return false;
+            }
+        }
+        //查詢失敗
+        return false;
+    }
+
+    function getidentity($uID) {
+        global $conn;
+        $uID = (int) $uID;
+        $sql = "SELECT role FROM user WHERE id = $uID";
+        //執行SQL查詢
+        if ($result = mysqli_query($conn,$sql)) {
+            //取得第一筆資料
+            if ($row = mysqli_fetch_assoc($result)) {
+                if ($row['role'] == 1) {
+                    echo "管理員";
+                } else {
+                    //不是管理員
+                    echo "一般會員";
+                }
+            }
+        }
+        //查詢失敗
+        return false;
+    }
+
+    function likeonly($bid, $uid) {
+        global $conn;
+        $uID = (int) $uID;
+        $sql = "SELECT liketime FROM likeOnce WHERE bID = $bid and uID = $uid";
+        //執行SQL查詢
+        if ($result = mysqli_query($conn, $sql)) {
+            //取得第一筆資料
+            if ($row = mysqli_fetch_assoc($result)) {
+                if ($row['liketime'] == 0) {
+                    echo "success";
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return true;
             }
         }
         //查詢失敗

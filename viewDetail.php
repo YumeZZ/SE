@@ -10,7 +10,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>推薦書單</title>
@@ -20,6 +20,7 @@
     <p>推薦書單所有留言&nbsp;&nbsp;[<a href='loginForm.php'>登出</a>]</p>
     <a href="view.php">[回推薦列表]</a>
     <hr />
+
     <table width=60% border="1">
       <tr>
         <td>編號</td>
@@ -30,11 +31,14 @@
         <td>推薦人</td>
         <td>讚</td>
         <td>噓</td>
+        <td>本文瀏覽次數</td>
       </tr>
 
       <?php
+          
           //將從網址"?id="中Get到的推薦書單編號存入bkID
           $bkID = (int)$_REQUEST['id'];
+          viewtime($bkID);
           $results = getBookDetail($bkID);
           if ($rs = mysqli_fetch_array($results)) {
             echo "<tr><td>" , $rs['id'] ,"</td><td>",
@@ -47,12 +51,13 @@
             "</td><td>", $rs['author'],
             "</td><td>", $rs['name'],
             "</td><td>(", $rs['push'],
-            ")</td><td>(", $rs['pull'], ")</td></td></tr>";
+            ")</td><td>(", $rs['push'],
+            ")</td><td>(", $rs['view'], ")</td></tr></table>";
           }
 
           
-          echo "</table><hr>";
-          echo "所有回應：<table width='40%' border='1'><tr><td>作者</td><td>回應</td></tr>";
+          echo "<hr>";
+          echo "所有回應：<table width='40%' border='1'><tr><td>作者</td><td colspan='2'>回應</td></tr>";
           $results = getComment($bkID);
 
           while ( $rs = mysqli_fetch_array($results)) {
